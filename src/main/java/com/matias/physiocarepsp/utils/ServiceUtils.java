@@ -68,12 +68,13 @@ public class ServiceUtils {
      * @return the charset encoding or null if not found
      */
     public static String getCharset(String contentType) {
-        for (String param : contentType.replace(" ", "").split(";")) {
-            if (param.startsWith("charset=")) {
-                return param.split("=", 2)[1];
-            }
+        if (contentType == null) {
+            // Handle the null case, return a default charset or throw an exception
+            return "UTF-8"; // Default charset
         }
-        return null; // Probably binary content
+        // Existing logic to extract charset
+        String charset = contentType.replace(" ", "").split("charset=")[1];
+        return charset;
     }
 
     /**
@@ -134,7 +135,9 @@ public class ServiceUtils {
                 }
             }
         } catch (IOException e) {
-            throw new Exception("ERROR");
+            // Log the exception details
+            e.printStackTrace();
+            throw new Exception("HTTP request failed: " + e.getMessage(), e);
         } finally {
             if (bufInput != null) {
                 try {

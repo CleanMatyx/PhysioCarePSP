@@ -1,6 +1,7 @@
 package com.matias.physiocarepsp.models.Appointment;
 
 import com.google.gson.annotations.SerializedName;
+import com.matias.physiocarepsp.models.Physio.Physio;
 
 import java.time.LocalDate;
 
@@ -12,7 +13,7 @@ public class Appointment {
     @SerializedName("_id")
     private String id;
     private LocalDate date;
-    private String physio;
+    private Physio physio;
     private String diagnosis;
     private String treatment;
     private String observations;
@@ -26,7 +27,7 @@ public class Appointment {
      * @param treatment    the treatment prescribed
      * @param observations additional observations
      */
-    public Appointment(LocalDate date, String physio, String diagnosis, String treatment, String observations) {
+    public Appointment(LocalDate date, Physio physio, String diagnosis, String treatment, String observations) {
         this.date = date;
         this.physio = physio;
         this.diagnosis = diagnosis;
@@ -44,7 +45,7 @@ public class Appointment {
      * @param treatment    the treatment prescribed
      * @param observations additional observations
      */
-    public Appointment(String id, LocalDate date, String physio, String diagnosis, String treatment, String observations) {
+    public Appointment(String id, LocalDate date, Physio physio, String diagnosis, String treatment, String observations) {
         this.id = id;
         this.date = date;
         this.physio = physio;
@@ -94,7 +95,7 @@ public class Appointment {
      *
      * @return the physiotherapist's name
      */
-    public String getPhysio() {
+    public Physio getPhysio() {
         return physio;
     }
 
@@ -103,7 +104,7 @@ public class Appointment {
      *
      * @param physio the physiotherapist's name
      */
-    public void setPhysio(String physio) {
+    public void setPhysio(Physio physio) {
         this.physio = physio;
     }
 
